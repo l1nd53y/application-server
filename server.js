@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require('path'); //a node native module
-const {Item, Restaurant} = require('./models/index');
+const {Item, Restaurant, Menu} = require('./models/index');
 
 
 const app = express();
@@ -8,10 +8,11 @@ const port = 3000;
 
 //Q: What does express.static help us do?
 //Q: What do you think path.join helps us do?
-app.use(express.static(path.join(__dirname, 'public')))
 
-//will add routes
 // 1)client makes a request -> request URL -> URL -> http request -> http response
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.json())
 
 //will add routes
 app.get('/items', async (req, res) => {
@@ -28,7 +29,7 @@ app.get('/randomItem', async (req, res) => {
     res.json(randomItem)
 })
 
-//////// Assignment code /////////
+//////// Assignment 7/14 code /////////
 
 app.get('/flipcoin', async (req, res) => {
     const randomNumber = Math.floor(Math.random() * 2);
@@ -46,7 +47,39 @@ app.get('/restaurants', async (req, res) => {
     res.json(allRestaurants)
 })
 
+//////// Assignment 7/15 code /////////
+
+// Find by restaurant id, show menu & menu items for restaurant
+app.get('/restaurants/:id', async (req, res) => {
+    let restaurant = await Restaurant.findByPk(req.params.id, {include: Menu, nested: true});
+    let menu  = await Menu.findByPk(req.params.id, {include: Item, nested: true});
+	res.json({ restaurant, menu })
+})
+
+//////// CRUD Assignment 7/15 code /////////
+
+// Add new restaurant
+app.post('/restaurants', async (req, res) => {
+    let newRestaurant = await Restaurant.create(req.body);
+    res.send('Created restaurant~')
+})
+// Delete a restaurant
+app.delete('/restaurants/:id', async (req, res) => {
+    await Restaurant.destroy({
+        where : {id : req.params.id} // Destory an Restaurant where this object matches
+    })
+    res.send("Deleted restaurant~")
+})
+// Update a restaurant (PUT)
+app.put("/restaurants/:id", async (req, res) => {
+    let updated = await Restaurant.update(req.body, {
+        where : {id : req.params.id} // Update a restaurant where the id matches, based on req.body
+    })
+    res.send("Updated restaurant~")
+})
+
 //Q: What will our server be doing?
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
-});
+
+})
