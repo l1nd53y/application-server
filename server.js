@@ -66,7 +66,7 @@ app.post('/restaurants', async (req, res) => {
 // Delete a restaurant
 app.delete('/restaurants/:id', async (req, res) => {
     await Restaurant.destroy({
-        where : {id : req.params.id} // Destory an Restaurant where this object matches
+        where : {id : req.params.id} // Destroy an Restaurant where this object matches
     })
     res.send("Deleted restaurant~")
 })
@@ -76,6 +76,24 @@ app.put("/restaurants/:id", async (req, res) => {
         where : {id : req.params.id} // Update a restaurant where the id matches, based on req.body
     })
     res.send("Updated restaurant~")
+})
+
+//////// 7/16 ADDING PATCH /////////
+
+// Partial update of a menu item (PATCH)
+app.patch("/items/:id", async(req, res) => {
+	await Item.update(req.body, {
+		where : {id : req.params.id}
+	})
+	res.send("Updated item field~")
+})
+
+// Partial update a restaurant (PATCH)
+app.patch("/restaurants/:id", async(req, res) => {
+	await Restaurant.update(req.body, {
+		where : {id : req.params.id}
+	})
+	res.send("Updated restaurant field~")
 })
 
 //Q: What will our server be doing?
