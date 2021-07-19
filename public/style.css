@@ -1,3 +1,68 @@
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
 body {
-  background-color: #c2c2c2;
+  /* background-color: #C2C2C2; */
+  background-image: url("/img/stars.jpg");
+  padding: 70px 0;
+  border: 0px solid #ffffff;
+  text-align: center;
+}
+
+h1, h3 {
+  font-family: "Arial", sans-serif;
+  color: #ffffff;
+}
+
+h2 {
+  font-family: "Arial", sans-serif;
+  color: #484848;
+}
+
+p {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+}
+
+a {
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  text-decoration: none;
+}
+
+.button {
+  background-color: #4c6271;
+  border: none;
+  color: white;
+  padding: 8px 8px;
+  margin-top: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  border-radius: 8px;
+}
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  box-sizing: border-box;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 0px solid #ffffff;
+  padding: 15px;
+  margin: 10px 10px;
+  font-size: 20px;
+  color: #000000;
+  text-align: center;
 }

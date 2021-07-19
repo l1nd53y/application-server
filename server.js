@@ -1,4 +1,7 @@
 const express = require("express");
+const Handlebars = require('handlebars');
+const expressHandlebars = require('express-handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const path = require('path'); //a node native module
 const {Item, Restaurant, Menu} = require('./models/index');
 
@@ -13,6 +16,39 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
+
+// **************Added 7/19**************
+
+// serve static assets from the public/ folder
+app.use(express.static('public'));
+
+//Configures handlebars library to work well w/ Express + Sequelize model
+const handlebars = expressHandlebars({
+    handlebars : allowInsecurePrototypeAccess(Handlebars)
+})
+
+//Tell this express app we're using handlebars
+app.engine('handlebars', handlebars);
+app.set('view engine', 'handlebars')
+
+app.get('/restaurants', async (req, res) => {
+    const restaurants = await Restaurant.findAll()
+    res.render('restaurants', { restaurants })
+})
+
+app.get('/restaurants/:id', async (req, res) => {
+    const restaurant = await Restaurant.findByPk(req.params.id)
+    res.render("restaurant", { restaurant });
+})
+
+app.get('/menus/:id', async (req, res) => {
+    const menu = await Menu.findByPk(req.params.id, {include: Item})
+    res.render("menu", { menu })
+})
+
+
+// **************END OF Added 7/19************** 
+
 
 //will add routes
 app.get('/items', async (req, res) => {

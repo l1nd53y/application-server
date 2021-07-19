@@ -5,66 +5,73 @@ const {Restaurant, Menu, Item} = require('./models/index') //Q: WHY import these
 //Q: What do you think will happen when we 'seed' this file?
 const seedRestaurant = [
   {
-    name: 'AppleBees',
-    location: 'Texas',
-    cuisine: 'FastFood'
+    name: 'Pizza Planet',
+    location: 'San Francisco',
+    cuisine: 'Galactic',
+    image: '/img/PizzaPlanet.png'
   },
   {
-    name: 'LittleSheep',
-    location: 'Dallas',
-    cuisine: 'Hotpot'
+    name: 'Gusteau\'s',
+    location: 'Paris',
+    cuisine: 'French',
+    image: '/img/Gusteaus.jpg'
   },
   {
-    name: 'Spice Grill',
-    location: 'Houston',
-    cuisine: 'Indian'
+    name: 'The Snuggly Duckling',
+    location: 'Forest of Corona',
+    cuisine: 'German',
+    image: '/img/SnugglyDuckling.jpg'
   },
   {
-    name: 'burgetking',
-    location: 'Dallas',
-    cuisine: 'Hotpot'
+    name: 'Harryhausen\'s',
+    location: 'Monstropolis',
+    cuisine: 'Japanese',
+    image: '/img/Harryhausens.jpg'
   },
   {
-    name: 'MCDS',
-    location: 'Dallas',
-    cuisine: 'Hotpot'
+    name: 'Tiana\'s Palace',
+    location: 'New Orleans',
+    cuisine: 'Southern',
+    image: '/img/TianasPalace.jpg'
   },
 ]
+
 const seedMenu = [
   {
     title: 'Breakfast',
-    RestaurantId : 1,
+    restaurant_id : 1,
   },
   {
     title: 'Lunch',
-    RestaurantId : 2,
+    restaurant_id : 2,
   },
   {
     title: 'Dinner',
-    RestaurantId : 3,
+    restaurant_id : 3,
   },
 ]
+
 const seedItem = [
   {
     name: 'bhindi masala',
     image: 'someimage.jpg',
     price: 9.50,
     vegetarian: true,
-    MenuId : 3,
+    menu_id : 3,
   },
   {
     name: 'egusi soup',
     image: 'someimage.jpg',
     price: 10.50,
     vegetarian: false,
-    MenuId : 2,
+    menu_id : 2,
   },
   {
     name: 'hamburger',
     image: 'someimage.jpg',
     price: 6.50,
     vegetarian: false,
-    MenuId : 1,
+    menu_id : 1,
   }
 ]
 

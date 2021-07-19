@@ -10,4 +10,4 @@ Restaurant.hasMany(Menu)
 Item.belongsTo(Menu)
 Menu.hasMany(Item) // what does hasMany provide for us?
 
-module.exports = { Restaurant, Menu, Item } //exporting models w/ associations
+module.exports = { sequelize, Restaurant, Menu, Item } //exporting models w/ associations

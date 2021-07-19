@@ -1,0 +1,13 @@
+<div>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h2>{{menu.title}}</h2>
+            <h4>Number of items: {{menu.Item.length}}</h4>
+            {{#each menu.Item}}
+                    <h4>{{name}}: ${{price}}</h4>
+            {{/each}}
+            <a class="btn" href="/restaurants">❮ Restaurants</a>
+        </div>
+</div>
+
+
